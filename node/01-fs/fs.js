@@ -16,3 +16,5 @@ fs.writeFile('../data.txt','我太弱了！！',function(error){
 		console.log('文件写入成功！')
 	}
 });
+
+console.log('config working')
