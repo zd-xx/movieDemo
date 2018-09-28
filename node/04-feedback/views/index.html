@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+	<link rel="stylesheet" type="text/css" href="/public/css/mui.css">
+	<style>
+		.header{
+			padding: 20px 0;
+		}
+	</style>
+</head>
+<body>
+	<h3 class="header">feedback</h3>
+	<a type="button" href="/post" class="mui-btn mui-btn-primary">评论</a>
+	<ul class="mui-table-view">
+    
+    {{each comments}}
+    <li class="mui-table-view-cell">{{$value.name}} : 
+    	<span>{{$value.message}}</span>
+        <span class="mui-badge mui-badge-primary">{{$value.dataTime}}</span>
+    </li>
+    {{/each}}
+</ul>
+<script src="/public/js/main.js"></script>
+</body>
+</html>

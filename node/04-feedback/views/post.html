@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>post</title>
+	<link rel="stylesheet" type="text/css" href="/public/css/mui.css">
+</head>
+<style>
+	body{
+		padding-top: 50px;
+	}
+	.mui-input-row label+input{
+		background:#fff;
+	}
+	.mui-input-row{
+		margin-top: 50px;
+	}
+	.index{
+		font-size: 30px;
+	}
+</style>
+<body>
+	<form action="/pinglun" method="get">
+		<a class="index" href="/">首页<small>发表评论</small></a>
+			<div class="mui-input-row">
+		        <label>name:</label>
+		        <input type="text" name="name" class="mui-input-clear" required="" minlength="2" maxlength="10" placeholder="name">
+		        <b>内容：</b>
+		        
+		    </div><textarea name="message" id="" cols="30" rows="10"></textarea>
+		    <button type="submit" class="mui-btn mui-btn-primary mui-btn-outlined">发表</button>
+	</form>
+	
+</body>
+</html>
