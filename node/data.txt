@@ -1,1 +1,2 @@
-我太弱了！！
+﻿express post :
+	body-parser
