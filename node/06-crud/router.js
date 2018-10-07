@@ -48,7 +48,13 @@ var router = express.Router()
 		})
 	})
 	router.get('/students/delete',function(req,res){
-
+		var id = req.query.id
+		Student.delete(id,function(err){
+			if(err){
+				return res.status(500).send('数据修改失败')
+			}
+			res.redirect('/students')
+		})
 	})
 //3.0 导出router
 module.exports = router

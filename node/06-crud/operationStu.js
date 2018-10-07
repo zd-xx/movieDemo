@@ -79,6 +79,28 @@ exports.findById = function(id,callback){
 	})
 }
 //删除学生
-exports.delete = function() {
-	
+exports.delete = function(id,callback) {
+	fs.readFile(dbPath,'utf8',function(err,data){
+		if(err){
+			return callback(err)
+		}
+		var students = JSON.parse(data).students
+		//es6方法，用于查找符合条件的元素的下标
+		var deleteId = students.findIndex(function(item){
+			return item.id === parseInt(id)
+		})
+		//数组删除元素
+		students.splice(deleteId,1)
+		//执行写操作
+		//把字符串保存到文件中
+		var ret = JSON.stringify({	//转成字符串
+			students:students
+		})
+		fs.writeFile(dbPath,ret,function(err){	//写文件
+			if(err){
+				return callback(err)
+			}
+			callback(null)
+		})
+	})
 }
