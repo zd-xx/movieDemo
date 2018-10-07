@@ -1,0 +1,13 @@
+mongod
+
+mongo
+
+show dbs
+
+show collections
+
+use dbname
+
+db.students.insertOne({"name":"jack"})
+
+mongoose
