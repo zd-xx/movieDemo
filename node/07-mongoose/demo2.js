@@ -73,6 +73,9 @@ User.find(function(err,ret){
 // })
 
 //删除数据
+//findOneAndRemove(conditions,[options],[callback])	根据条件删除一个
+//findByIdAndRemove(id,[options],callback)	根据id删除一个
+//
 // User.remove({
 // 	username:'admin'
 // },function(err,ret){
@@ -84,6 +87,9 @@ User.find(function(err,ret){
 // })
 // 
 // 更新数据ret为更改前的数据
+// findOneAndUpdate()	根据指定条件更新一个
+// findByIdAndUpdate()	根据id更新一个
+// 
 // User.findByIdAndUpdate('5bba360c87d30d16d099d51a',{
 // 	password:'999'
 // },function(err,ret){

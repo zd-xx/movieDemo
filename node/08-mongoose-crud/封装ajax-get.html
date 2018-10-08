@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	function get(url,callback){
+		var oReq =  XMLHttpRequest()
+		oReq.onload=function(){
+			callback(oReq.responseText)
+		}
+		oReq.open('get',url,true)
+		oReq.send()
+	}
+	get('../data.txt',function(data){
+		console.log(data)
+	})
+</script>
+</body>
+</html>
