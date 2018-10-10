@@ -12,14 +12,11 @@
     <title>{{name}}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="/public/css/dashboard.css" rel="stylesheet">
-
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- 留坑做css -->
+    {{block 'head'}}{{/block}}
   </head>
 
  <body>
@@ -32,5 +29,7 @@
   {{/block}}
   <!--  引入公共底部 -->
   {{include './footer.html'}}
+  <!-- 留js坑 -->
+  {{block 'script'}}{{/block}}
  </body>
 </html>
