@@ -1,0 +1,43 @@
+{{block 'header'}}
+
+{{/block}}
+<nav class="navbar navbar-default header" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#"><img src="/public/img/logo.jpg" alt=""></a>
+    </div>
+    <div class="nav-right">
+
+        <form class="form-inline" role="form">
+  <div class="form-group">
+    <label class="sr-only" for="name">名称</label>
+    <input type="text" class="form-control" id="name" placeholder="请输入名称">
+  </div>
+  <div class="btn-group form-right">
+    <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown">发起
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a href="#">功能</a>
+        </li>
+        <li>
+            <a href="#">另一个功能</a>
+        </li>
+        <li>
+            <a href="#">其他</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a href="#">分离的链接</a>
+        </li>
+    </ul>
+
+		<a class="btn btn-primary btn-sm" href="/login">登录</a>
+		<a class="btn btn-success btn-sm" href="/register">注册</a>
+	</div>
+</form>
+	
+    </div>
+    </div>
+</nav>

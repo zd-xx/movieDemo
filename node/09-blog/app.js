@@ -1,7 +1,11 @@
 var express = require('express')
+var bodyParser = require('body-parser')
 //path用于操作和得到路径信息：path.parse()
 var path = require('path')
 var app = express()
+
+//引入路由
+var router = require('./routers/router.js')
 
 //开放public和module
 //path.join 用于拼接路径
@@ -16,12 +20,12 @@ app.use('/node_modules/',express.static(path.join(__dirname,'./node_modules')))
 app.engine('html',require('express-art-template'))
 //默认为views目录，也可更改
 app.set('views',path.join(__dirname,'./views/'))
+//配置post请求,模板引擎和body-parser在挂载路由之前
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
 
-app.get('/',function(req,res){
-	res.render('index.html',{
-		name:'shen'
-	})
-})
+//把路由容器挂载到app服务中
+app.use(router)
 
 
 app.listen(3000,function(){
