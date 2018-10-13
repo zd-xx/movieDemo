@@ -50,8 +50,10 @@
 					//0:成功，1：重复，500：服务端出错
 					if(data.error_code===0){
 						alert('成功')
+						//ajax为异步操作，服务端无法异步重定向，所以要在客户端重定向
+						window.location.href = '/'
 					}else{
-						alert('fail')
+						alert('注册失败！')
 					}
 				}
 			})

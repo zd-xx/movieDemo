@@ -3,6 +3,8 @@ var bodyParser = require('body-parser')
 //path用于操作和得到路径信息：path.parse()
 var path = require('path')
 var app = express()
+//使用session要引入该模块
+var session = require('express-session')
 
 //引入路由
 var router = require('./routers/router.js')
@@ -23,7 +25,15 @@ app.set('views',path.join(__dirname,'./views/'))
 //配置post请求,模板引擎和body-parser在挂载路由之前
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
-
+//配置session
+//当配置好后，就可以通过req.session 来访问和设置session成员
+//添加session数据：req.session.foo = 'bar'
+//访问session数据：req.session.foo
+app.use(session({
+	secret:'keyboard cat',
+	resave:false,
+	saveUninitialized:true
+}))
 //把路由容器挂载到app服务中
 app.use(router)
 
