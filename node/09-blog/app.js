@@ -37,6 +37,18 @@ app.use(session({
 //把路由容器挂载到app服务中
 app.use(router)
 
+//配置404中间件,404必须在最后,否则由于是万能中间件，会阻断其他中间件的执行
+app.use(function(req,res){
+	res.render('404.html')
+})
+
+//配置错误处理中间件
+app.use(function(err,req,res,next){
+	res.status(500).json({
+		err_code:500,
+		message:err.message
+	})
+})
 
 app.listen(3000,function(){
 	console.log('port 3000 running...')

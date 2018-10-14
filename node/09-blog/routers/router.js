@@ -21,17 +21,15 @@ router.get('/login',function(req,res){
 	})	
 })
 
-router.post('/login',function(req,res){
+//app中配置了错误处理中间件，这里可以直接用next 
+router.post('/login',function(req,res,next){
 	var body = req.body
 	User.findOne({
 		email:body.email,
 		password:md5(body.password)
 	},function(err,user){
 		if(err){
-			return res.status(500).json({
-				err_code:500,
-				message:err.message
-			})
+			return next(err)
 		}
 
 		if(!user){
