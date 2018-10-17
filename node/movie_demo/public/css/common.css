@@ -1,0 +1,11 @@
+html,body{
+	min-width: 360px;
+	max-width: 640px;
+}
+#header{
+	background:#fff;
+}
+#header>.wx-logo{
+	width: 44px;
+	height: 44px;
+}
