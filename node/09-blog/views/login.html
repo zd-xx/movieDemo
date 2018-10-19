@@ -50,7 +50,7 @@
 					//0:成功，1：重复，500：服务端出错
 					if(data.err_code===0){
 						//ajax为异步操作，服务端无法异步重定向，所以要在客户端重定向
-						window.location.href = '/'
+						window.location.href = '/controler/manage.html'
 					}else{
 						alert('登录失败！')
 					}

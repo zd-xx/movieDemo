@@ -2,8 +2,11 @@ var express = require('express')
 var path = require('path')
 var bodyParser = require('body-parser')
 var app = express()
+//使用session要引入该模块
+var session = require('express-session')
 
 var page_router = require('./routers/page.js')
+var control_router = require('./routers/control.js')
 app.use('/public/',express.static(path.join(__dirname,'./public')))
 app.use('/node_modules/',express.static(path.join(__dirname,'./node_modules')))
 
@@ -13,7 +16,14 @@ app.set('views',path.join(__dirname,'./views/'))
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
+app.use(session({
+	secret:'keyboard cat',
+	resave:false,
+	saveUninitialized:true
+}))
+
 app.use(page_router)
+app.use(control_router)
 
 //配置404中间件,404必须在最后,否则由于是万能中间件，会阻断其他中间件的执行
 app.use(function(req,res){

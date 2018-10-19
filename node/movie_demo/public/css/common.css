@@ -69,3 +69,6 @@ html,body{
 	display: inline-block;
 	margin-right: 10px;
 }
+#movie-list .movieAct{
+	color:red;
+}
