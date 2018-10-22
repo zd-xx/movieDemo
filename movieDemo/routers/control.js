@@ -27,6 +27,7 @@ router.get('/admin/login',function(req,res){
 		sex:1,
 		cellNumber:15209251294,
 		role:'超级管理员',
+		status:true,
 		account:md5('admin'+'bashen'),
 		password:md5('123456'+'bashen')
 	}
@@ -118,7 +119,48 @@ router.get('/admin/index/welcome',function(req,res){
 })
 
 router.get('/admin/index/adminList',function(req,res){
-	res.render('controler/admin-list.html',{
-		
+	Admin.findAllAdmin({},function(err,data){
+		if(err){
+			res.status(200).json({
+				err_code:1,
+				message:'管理员列表加载失败！'
+			})
+		}
+		res.render('controler/admin-list.html',{
+			admin_list:data
+		})
 	})	
+})
+
+router.get('/admin/index/statusClose',function(req,res){
+	var query = {_id:req.query.id}
+	Admin.findOneAndUpdate(query, { status: false },function(err,data){
+		if(err){
+			res.status(200).json({
+				err_code:1,
+				message:'关闭状态失败！'
+			})
+		}
+		res.status(200).json({
+			err_code:0,
+			message:'ok'
+		})
+	})
+})
+
+router.get('/admin/index/statusOpen',function(req,res){
+	var query = {_id:req.query.id}
+	console.log(query)
+	Admin.findOneAndUpdate(query, { status: true },function(err,data){
+		if(err){
+			res.status(200).json({
+				err_code:1,
+				message:'开启状态失败！'
+			})
+		}
+		res.status(200).json({
+			err_code:0,
+			message:'ok'
+		})
+	})
 })

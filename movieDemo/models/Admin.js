@@ -19,8 +19,7 @@ var AdminSchema = new Schema({
 		default:Date.now
 	},
 	status:{
-		type:Number,
-		enum:[0,1],
+		type:Boolean,
 		default:0
 	},
 	cellNumber:{
@@ -62,4 +61,9 @@ adminModel.findOneAdmin=function(admin,callback){
 	this.findOne(admin,function(err,user){
 		callback(err,user)
 	})
-}	
+}
+adminModel.findAllAdmin=function(admin,callback){
+	this.find(admin,function(err,user){
+		callback(err,user)
+	})
+}
