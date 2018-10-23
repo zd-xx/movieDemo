@@ -7,12 +7,13 @@ var Schema = mongoose.Schema
 var AdminSchema = new Schema({
 	name:{
 		type:String,
-		default:"匿名"
+		default:"匿名",
+		required:true
 	},
 	sex:{
 		type:Number,
-		enum:[0,1],
-		default:0
+		enum:[1,2],
+		default:1
 	},
 	joinDate:{
 		type:Date,
@@ -20,10 +21,12 @@ var AdminSchema = new Schema({
 	},
 	status:{
 		type:Boolean,
-		default:0
+		default:0,
+		required:true
 	},
 	cellNumber:{
-		type:Number
+		type:Number,
+		required:true
 	},
 	role:{
 		type:String,
@@ -34,7 +37,8 @@ var AdminSchema = new Schema({
 	},
 	email:{
 		type:String,
-		unique:true
+		unique:true,
+		required:true
 	},
 	account:{
 		type:String,
@@ -52,8 +56,13 @@ var adminModel = mongoose.model('Admin', AdminSchema)
 module.exports = adminModel
 
 adminModel.addOneAdmin=function(admin,callback){
+	if(admin.password!==admin.password2){
+		callback(true,false)
+	}else{
+		delete admin.password2
+	}
 	new adminModel(admin).save(function(err,ret){
-		callback(err,true)
+		callback(err,ret)
 	})
 	
 }

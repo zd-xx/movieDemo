@@ -25,6 +25,7 @@ router.get('/admin/login',function(req,res){
 	var master = {
 		email:'1037597461@qq.com',
 		sex:1,
+		name:'八神',
 		cellNumber:15209251294,
 		role:'超级管理员',
 		status:true,
@@ -43,7 +44,7 @@ router.get('/admin/login',function(req,res){
 					return console.log('初始创建失败')
 				}
 					return console.log('初始创建成功')
-				})
+			})
 		}
 		
 	})
@@ -162,5 +163,30 @@ router.get('/admin/index/statusOpen',function(req,res){
 			err_code:0,
 			message:'ok'
 		})
+	})
+})
+
+router.get('/admin/index/addAdmin',function(req,res){
+	res.render('controler/admin-add.html',{
+	})
+})
+
+router.post('/admin/index/addAdmin',function(req,res){
+	var body = req.body
+	console.log(body)
+	Admin.addOneAdmin(body,function(err,msg){
+		if(err){
+			res.status(500).json({
+				err_code:1,
+				message:'服务端错误'
+			})
+		}
+		if(msg){
+			console.log(666)
+			res.status(200).json({
+				err_code:0,
+				message:'ok'
+			})
+		}
 	})
 })
