@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{block 'title'}}默认标题{{/block}}</title>
+  <link rel="stylesheet" href="/public/css/mui.css">
+  <link rel="stylesheet" href="/public/css/common.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 留坑，css样式 -->
+  {{block 'head'}}{{/block}}
+
+</head>
+<body>
+  {{include '../_partials/header.html'}}
+  {{block 'body'}}{{/block}}
+  {{include '../_partials/footer.html'}}
+  <div id="QRcode" class="hide">
+    <div class="mask"></div>
+    <p>
+      <span class="mui-icon mui-icon-closeempty closeQR"></span>
+      <img src="/public/img/QRcode.png">
+    </p>
+  </div>
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+   <script src="/public/js/mui.js"></script>
+   <script src="/public/js/common.js"></script>
+   <script>
+    
+
+
+
+   </script>
+</body>
+</html>
