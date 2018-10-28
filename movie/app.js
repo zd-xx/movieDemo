@@ -6,7 +6,9 @@ var app = express()
 var session = require('express-session')
 
 var page_router = require('./routers/page.js')
-var control_router = require('./routers/control.js')
+var admin_router = require('./routers/admin-control.js')
+var film_router = require('./routers/film-control.js')
+
 app.use('/public/',express.static(path.join(__dirname,'./public')))
 app.use('/node_modules/',express.static(path.join(__dirname,'./node_modules')))
 
@@ -23,7 +25,8 @@ app.use(session({
 }))
 
 app.use(page_router)
-app.use(control_router)
+app.use(admin_router)
+app.use(film_router)
 
 //配置404中间件,404必须在最后,否则由于是万能中间件，会阻断其他中间件的执行
 app.use(function(req,res){

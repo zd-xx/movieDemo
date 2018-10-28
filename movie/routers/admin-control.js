@@ -1,11 +1,12 @@
 var express = require('express')
 //链接mongodb
 const mongoose = require('mongoose');
-//引入加密模块
-var md5 = require('blueimp-md5')
+
 //使用session要引入该模块
 var session = require('express-session')
 
+//引入加密模块
+var md5 = require('blueimp-md5')
 // //引入用户模型和封装方法
 var Admin = require('../models/Admin')
 var router = express.Router()
@@ -27,10 +28,12 @@ router.get('/admin/login',function(req,res){
 		sex:1,
 		name:'八神',
 		cellNumber:15209251294,
-		role:'超级管理员',
+		role:1,
 		status:true,
-		account:md5('admin'+'bashen'),
-		password:md5('123456'+'bashen')
+		account:'admin',
+		password:'123456',
+		password2:'123456',
+		remark:'we are venom!'
 	}
 	Admin.findOneAdmin(master,function(err,data){
 		if(err){
@@ -52,10 +55,9 @@ router.get('/admin/login',function(req,res){
 })
 
 router.post('/admin/login',function(req,res){
-	//在此拿到session当数据，并存到模板
-	Admin.findOne({
-		account:md5(req.body.account+'bashen'),
-		password:md5(req.body.password+'bashen')
+	Admin.findOneAdmin({
+		account:'admin',
+		password:123456
 	},function(err,user){
 		if(err){
 			return res.status(500).json({
@@ -75,8 +77,7 @@ router.post('/admin/login',function(req,res){
 			err_code:0,
 			message:'ok'
 		})
-	})
-	
+	})	
 })
 
 router.get('/logout',function(req,res){
@@ -84,28 +85,6 @@ router.get('/logout',function(req,res){
 	req.session.user = null
 	res.redirect('admin/login')
 })
-
-// router.get('/register',function(req,res){
-// 	//在此拿到session当数据，并存到模板
-// 	res.render('controler/register.html',{
-		
-// 	})	
-// })
-
-// router.post('/register',function(req,res){
-// 	var body = req.body
-// 	console.log(body)
-// 	Admin.addOneAdmin(body,function(err,d){
-// 		if(err){
-// 			return console.log(err)
-// 			// return res.status(500).json({
-// 			// 	'success':false,
-// 			// 	'message':'服务器错误'
-// 			// })
-// 		}
-// 		console.log(d)
-// 	})
-// })
 
 router.get('/admin/index',function(req,res){
 	//在此拿到session当数据，并存到模板
@@ -181,12 +160,65 @@ router.post('/admin/index/addAdmin',function(req,res){
 				message:'服务端错误'
 			})
 		}
-		if(msg){
-			console.log(666)
-			res.status(200).json({
-				err_code:0,
-				message:'ok'
+		console.log(66)
+		res.status(200).json({
+			err_code:0,
+			message:'ok'
+		})
+		console.log('sended')
+	})
+})
+
+router.post('/admin/index/delAdmin',function(req,res){
+	var id = {_id:req.body.id}
+	Admin.delOneAdmin(id,function(err,msg){
+		if(err){
+			console.log('err')
+			res.status(500).json({
+				err_code:1,
+				message:'服务端错误'
 			})
 		}
+		console.log(msg)
+		res.status(200).json({
+			err_code:0,
+			message:'ok'
+		})
+		console.log('deled')
 	})
+})
+
+router.get('/admin/index/editAdmin',function(req,res){
+	var id = req.query.id
+	var admin
+	Admin.findOneById({_id:id},function(err,data){
+		if(err){
+			console.log('err')
+			res.status(500).json({
+				err_code:1,
+				message:'服务端错误'
+			})
+		}
+		res.render('controler/admin-edit.html',{
+			admin:data
+		})
+	})	
+})
+
+router.post('/admin/index/editAdmin',function(req,res){
+	var admin = req.body,
+		id = admin.id
+		Admin.editOneAdmin(id,admin,function(err,data){
+			if(err){
+				console.log('err')
+				res.status(500).json({
+					err_code:1,
+					message:'更新失败'
+				})
+			}
+			res.status(200).json({
+				err_code:0,
+				message:'更新成功'
+			})
+		})
 })

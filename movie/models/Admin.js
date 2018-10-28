@@ -1,7 +1,8 @@
 //链接mongodb
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/movie', { useNewUrlParser: true });
-
+//引入加密模块
+var md5 = require('blueimp-md5')
 var Schema = mongoose.Schema
 
 var AdminSchema = new Schema({
@@ -60,13 +61,20 @@ adminModel.addOneAdmin=function(admin,callback){
 		callback(true,false)
 	}else{
 		delete admin.password2
+		admin.password = md5(admin.password+'bashen')
 	}
 	new adminModel(admin).save(function(err,ret){
 		callback(err,ret)
 	})
-	
+}
+adminModel.delOneAdmin=function(id,callback){
+	console.log(id)
+	this.remove(id,function(err,ret){
+		callback(err,ret)
+	})
 }
 adminModel.findOneAdmin=function(admin,callback){
+	admin.password = md5(admin.password+'bashen')
 	this.findOne(admin,function(err,user){
 		callback(err,user)
 	})
@@ -74,5 +82,20 @@ adminModel.findOneAdmin=function(admin,callback){
 adminModel.findAllAdmin=function(admin,callback){
 	this.find(admin,function(err,user){
 		callback(err,user)
+	})
+}
+
+adminModel.findOneById=function(id,callback){
+	console.log(id)
+	this.findById(id, function (err,user){
+        callback(err,user)
+    });
+}
+
+adminModel.editOneAdmin=function(id,admin,callback){
+	delete admin.id
+	console.log(admin)
+    this.findByIdAndUpdate(id,admin,function(err,ret){
+		callback(err,ret)
 	})
 }
