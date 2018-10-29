@@ -152,7 +152,6 @@ router.get('/admin/index/addAdmin',function(req,res){
 
 router.post('/admin/index/addAdmin',function(req,res){
 	var body = req.body
-	console.log(body)
 	Admin.addOneAdmin(body,function(err,msg){
 		if(err){
 			res.status(500).json({
@@ -160,12 +159,10 @@ router.post('/admin/index/addAdmin',function(req,res){
 				message:'服务端错误'
 			})
 		}
-		console.log(66)
 		res.status(200).json({
 			err_code:0,
 			message:'ok'
 		})
-		console.log('sended')
 	})
 })
 
@@ -173,18 +170,15 @@ router.post('/admin/index/delAdmin',function(req,res){
 	var id = {_id:req.body.id}
 	Admin.delOneAdmin(id,function(err,msg){
 		if(err){
-			console.log('err')
 			res.status(500).json({
 				err_code:1,
 				message:'服务端错误'
 			})
 		}
-		console.log(msg)
 		res.status(200).json({
 			err_code:0,
 			message:'ok'
 		})
-		console.log('deled')
 	})
 })
 
@@ -193,7 +187,6 @@ router.get('/admin/index/editAdmin',function(req,res){
 	var admin
 	Admin.findOneById({_id:id},function(err,data){
 		if(err){
-			console.log('err')
 			res.status(500).json({
 				err_code:1,
 				message:'服务端错误'
@@ -210,7 +203,6 @@ router.post('/admin/index/editAdmin',function(req,res){
 		id = admin.id
 		Admin.editOneAdmin(id,admin,function(err,data){
 			if(err){
-				console.log('err')
 				res.status(500).json({
 					err_code:1,
 					message:'更新失败'

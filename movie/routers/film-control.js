@@ -21,6 +21,7 @@ router.get('/admin/index/film-add',function(req,res){
 })
 router.post('/admin/index/film-add',function(req,res){
 	var film = req.body
+	console.log(film)
 	Film.addFilm(film,function(err,ret){
 		if(err){
 			res.status(500).json({
@@ -28,7 +29,6 @@ router.post('/admin/index/film-add',function(req,res){
 				message:'添加失败'
 			})
 		}
-		console.log(666)
 		res.status(200).json({
 			err_code:0,
 			message:'添加成功'

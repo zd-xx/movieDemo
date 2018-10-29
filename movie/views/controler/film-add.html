@@ -54,16 +54,64 @@
 				</select>
 				</span> </div>
 		</div>
+		<div class="row cl skin-minimal">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类别：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div class="check-box">
+				<label for="checkbox-1">动作</label>
+				<input type="checkbox" value="动作" name="type" id="checkbox-1">
+				</div> 
+				<div class="check-box">
+				<label for="checkbox-2">喜剧</label>
+				<input type="checkbox" value="喜剧" name="type" id="checkbox-2">
+				</div>
+				<div class="check-box">
+				<label for="checkbox-3">科幻</label>
+				<input type="checkbox" value="科幻" name="type" id="checkbox-3">
+				</div>
+				<div class="check-box">
+				<label for="checkbox-4">恐怖</label>
+				<input type="checkbox" value="恐怖" name="type" id="checkbox-4">
+				</div>
+				<div class="check-box">
+				<label for="checkbox-5">剧情</label>
+				<input type="checkbox" value="剧情" name="type" id="checkbox-5">
+				</div>
+				<div class="check-box">
+				<label for="checkbox-6">战争</label>
+				<input type="checkbox" value="战争" name="type" id="checkbox-6">
+				</div>
+				<div class="check-box">
+				<label for="checkbox-7">惊悚</label>
+				<input type="checkbox" value="惊悚" name="type" id="checkbox-7">
+				</div>
+			</div>
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">评分：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="score" id="" placeholder="" value="" class="input-text">
+				<input type="number" name="score" id="" placeholder="" value="" class="input-text">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">地区：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="region" id="" placeholder="" value="" class="input-text">
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box">
+    				<input type="radio" id="radio-1" value="1" name="region">
+    				<label for="radio-1">国产剧</label>
+  				</div>
+  				<div class="radio-box">
+    				<input type="radio" id="radio-2" value="2" name="region">
+    				<label for="radio-2">港台剧</label>
+  				</div>
+  				<div class="radio-box">
+    				<input type="radio" id="radio-3" value="3" name="region">
+    				<label for="radio-3">日韩剧</label>
+  				</div>
+  				<div class="radio-box">
+    				<input type="radio" id="radio-4" value="4" name="region">
+    				<label for="radio-4">欧美剧</label>
+  				</div>
 			</div>
 		</div>
 		<div class="row cl">
@@ -76,7 +124,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">图片：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="file" name="img" id="" placeholder="" value="" class="input-text">
+				<input type="file" name="img" id="img" placeholder="" value="" class="input-text">
 			</div>
 		</div>
 		<div class="row cl">
@@ -105,10 +153,22 @@
 <script type="text/javascript" src="/public/controllers/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
 $(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	})
+
 	$('#form-article-add').on('submit',function(ev){
 		ev.preventDefault()
-		var formData = $(this).serialize()
-		console.log(formData)
+
+		var formData = $(this).serialize(),
+			$img = $('#img');
+			var FD = new FormData()
+			FD.append('img',$img[0].files[0])
+			formData +=('&img=' + FD)
+			console.log(formData)
+
 		$.ajax({
 			url:'/admin/index/film-add',
 			data:formData,

@@ -30,11 +30,11 @@ var FilmSchema = new Schema({
 		type:Array
 	},
 	film_type:{
-		type:Number,	//电影 电视剧 动漫 综艺
+		type:String,	//电影 电视剧 动漫 综艺
 		enum:[0,1,2,3],
 		default:0
 	},
-	type:{
+	type:{		//类别
 		type:Array
 	},
 	img:{
