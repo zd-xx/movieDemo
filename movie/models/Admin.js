@@ -68,7 +68,6 @@ adminModel.addOneAdmin=function(admin,callback){
 	})
 }
 adminModel.delOneAdmin=function(id,callback){
-	console.log(id)
 	this.remove(id,function(err,ret){
 		callback(err,ret)
 	})
@@ -86,7 +85,6 @@ adminModel.findAllAdmin=function(admin,callback){
 }
 
 adminModel.findOneById=function(id,callback){
-	console.log(id)
 	this.findById(id, function (err,user){
         callback(err,user)
     });

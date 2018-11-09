@@ -19,9 +19,7 @@ var FilmSchema = new Schema({
 		type:String
 	},
 	region:{
-		type:Number,	//国产 港台 日韩 欧美
-		enum:[0,1,2,3],
-		default:0
+		type:String,	//国产 港台 日韩 欧美
 	},
 	from1:{
 		type:Array
@@ -31,17 +29,16 @@ var FilmSchema = new Schema({
 	},
 	film_type:{
 		type:String,	//电影 电视剧 动漫 综艺
-		enum:[0,1,2,3],
-		default:0
 	},
-	type:{		//类别
+	keywords:{		//类别
 		type:Array
 	},
 	img:{
-		type:Buffer
+		type:String
 	},
 	lastDate:{
 		type:Date,
+		required:true,
 		default:Date.now
 	}
 })
@@ -52,6 +49,24 @@ module.exports = filmModel
 
 filmModel.addFilm=function(film,callback){
 	new filmModel(film).save(function(err,ret){
+		callback(err,ret)
+	})
+}
+
+filmModel.findAll=function(films,callback){
+	this.find(films,function(err,ret){
+		callback(err,ret)
+	})
+}
+
+filmModel.findOneFilm=function(id,callback){
+	this.findById(id, function (err,ret){
+        callback(err,ret)
+    });
+}
+
+filmModel.delFilm=function(id,callback){
+	this.findByIdAndRemove(id,function(err,ret){
 		callback(err,ret)
 	})
 }

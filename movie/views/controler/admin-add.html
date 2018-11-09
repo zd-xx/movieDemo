@@ -120,6 +120,7 @@ $(function(){
 			e.preventDefault()
 			//序列化数据
 			var formData = $(this).serialize()
+			console.log(formData,typeof formData)
 			//发送ajax请求
 			$.ajax({
 				url:'/admin/index/addAdmin',

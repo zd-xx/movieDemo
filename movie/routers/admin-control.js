@@ -152,6 +152,7 @@ router.get('/admin/index/addAdmin',function(req,res){
 
 router.post('/admin/index/addAdmin',function(req,res){
 	var body = req.body
+	console.log(body,typeof body)
 	Admin.addOneAdmin(body,function(err,msg){
 		if(err){
 			res.status(500).json({

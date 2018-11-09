@@ -2,6 +2,7 @@ var express = require('express')
 var path = require('path')
 var bodyParser = require('body-parser')
 var app = express()
+var multer = require('multer');
 //使用session要引入该模块
 var session = require('express-session')
 
@@ -17,7 +18,6 @@ app.set('views',path.join(__dirname,'./views/'))
 //配置post请求,模板引擎和body-parser在挂载路由之前
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
-
 app.use(session({
 	secret:'keyboard cat',
 	resave:false,
