@@ -199,6 +199,7 @@ $(function(){
 		var file =$("input[id^='img']")[0].files;
 			formData.append('img',file[0])
 			formData.append('text',encodeURIComponent(data))
+			console.log(text)
 		$.ajax({
 			url:'/admin/index/film-add',
 			data:formData,

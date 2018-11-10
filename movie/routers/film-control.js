@@ -141,6 +141,21 @@ router.get('/admin/index/dianying',function(req,res){
 		res.render('controler/dianying-list.html',{
 			films:ret
 		})
+	})	
+})
+router.post('/admin/index/film-del',function(req,res){
+	var id = req.body.id
+	console.log(id)
+	Film.delFilm(id,function(err,msg){
+		if(err){
+			res.status(500).json({
+				err_code:1,
+				message:'服务端错误'
+			})
+		}
+		res.status(200).json({
+			err_code:0,
+			message:'ok'
+		})
 	})
-		
 })
