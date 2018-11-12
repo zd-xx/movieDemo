@@ -59,33 +59,6 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<div class="check-box">
 				<label for="checkbox-1">动作</label>
-<<<<<<< HEAD
-				<input type="checkbox" value="动作" name='keywords[]' id="checkbox-1">
-				</div> 
-				<div class="check-box">
-				<label for="checkbox-2">喜剧</label>
-				<input type="checkbox" value="喜剧" name='keywords[]' id="checkbox-2">
-				</div>
-				<div class="check-box">
-				<label for="checkbox-3">科幻</label>
-				<input type="checkbox" value="科幻" name="keywords[]" id="checkbox-3">
-				</div>
-				<div class="check-box">
-				<label for="checkbox-4">恐怖</label>
-				<input type="checkbox" value="恐怖" name="keywords[]" id="checkbox-4">
-				</div>
-				<div class="check-box">
-				<label for="checkbox-5">剧情</label>
-				<input type="checkbox" value="剧情" name="keywords[]" id="checkbox-5">
-				</div>
-				<div class="check-box">
-				<label for="checkbox-6">战争</label>
-				<input type="checkbox" value="战争" name="keywords[]" id="checkbox-6">
-				</div>
-				<div class="check-box">
-				<label for="checkbox-7">惊悚</label>
-				<input type="checkbox" value="惊悚" name="keywords[]" id="checkbox-7">
-=======
 				<input type="checkbox" value="动作" name='keywords' id="checkbox-1">
 				</div> 
 				<div class="check-box">
@@ -111,18 +84,13 @@
 				<div class="check-box">
 				<label for="checkbox-7">惊悚</label>
 				<input type="checkbox" value="惊悚" name="keywords" id="checkbox-7">
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 				</div>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">评分：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-<<<<<<< HEAD
-				<input type="number" name="score" id="" placeholder="" value="" class="input-text">
-=======
 				<input type="number" name="score" min="0" max="10" id="" placeholder="" value="" class="input-text">
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 			</div>
 		</div>
 		<div class="row cl">
@@ -193,23 +161,17 @@ $(function(){
 
 	$('#form-article-add').on('submit',function(ev){
 		ev.preventDefault()
-<<<<<<< HEAD
-=======
 		 var $checked = $("input[name='keywords']:checked")
 		 var check=[];
 		 for(var i=0;i<$checked.length;i++){
 		 	check.push($checked.eq(i).val())
 		 }
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 		var data = decodeURIComponent($(this).serialize(),true)
 		var formData = new FormData($('form-article-add')[0])
 		var file =$("input[id^='img']")[0].files;
 			formData.append('img',file[0])
 			formData.append('text',data)
-<<<<<<< HEAD
-=======
 			formData.append('check',check)
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 			console.log(data)
 		$.ajax({
 			url:'/admin/index/film-add',
