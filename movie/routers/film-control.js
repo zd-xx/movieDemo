@@ -106,8 +106,7 @@ router.get('/admin/index/film-edit',function(req,res){
 				message:'服务端错误'
 			})
 		}
-		res.render('controler/film-edit.html',{
-			film:{
+		var film = {
 				score:data.score,
 				from1:JSON.stringify(data.from1),
 				form2:JSON.stringify(data.from2),
@@ -121,6 +120,9 @@ router.get('/admin/index/film-edit',function(req,res){
 				img:data.img,
 				lastDate:data.lastDate
 			}
+			console.log(film.img)
+		res.render('controler/film-edit.html',{
+			film:film
 		})
 	})
 })

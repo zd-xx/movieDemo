@@ -31,11 +31,7 @@ var FilmSchema = new Schema({
 		type:String,	//电影 电视剧 动漫 综艺
 	},
 	keywords:{		//类别
-<<<<<<< HEAD
-		type:Array
-=======
 		type:String
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 	},
 	img:{
 		type:String
@@ -68,9 +64,6 @@ filmModel.findOneFilm=function(id,callback){
         callback(err,ret)
     });
 }
-
-<<<<<<< HEAD
-=======
 filmModel.editOneFilm=function(id,film,callback){
 	console.log(id,film,typeof film)
 	//delete admin.id
@@ -78,8 +71,6 @@ filmModel.editOneFilm=function(id,film,callback){
 		callback(err,ret)
 	})
 }
-
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 filmModel.delFilm=function(id,callback){
 	this.findByIdAndRemove(id,function(err,ret){
 		callback(err,ret)
