@@ -30,11 +30,19 @@
 </head>
 <script>
 	window.onload=function(){
+<<<<<<< HEAD
 		var str = '{{film.keywords}}'.replace(/&#34;/g,'"')
 		var key = eval ("(" + str+ ")")
 	var type = '{{film.film_type}}'
 	var region = '{{film.region}}'
 	!(function(){
+=======
+		var str = '{{film.keywords}}'
+		var key = str.split(',')
+	var type = '{{film.film_type}}'
+	var region = '{{film.region}}'
+	!(function(){	//select
+>>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 		var $select = $('.select').find('option')
 		for(var i=0;i<$select.length;i++){
 			if($select.eq(i).html()==type){
@@ -43,7 +51,11 @@
 			}
 		}
 	})()
+<<<<<<< HEAD
 	!(function(){
+=======
+	!(function(){	//radio
+>>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 		var $rad = $("input[type='radio']")
 		for(var i=0;i<$rad.length;i++){
 			if($rad.eq(i).val()==region){
@@ -53,6 +65,10 @@
 		}
 	})()
 	!(function(){
+<<<<<<< HEAD
+=======
+		console.log(key,typeof key)
+>>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 		for(var i=0;i<key.length;i++){
 			var $check = $("input[value="+key[i]+"]")
 			$check.parent().addClass('checked')
@@ -63,7 +79,12 @@
 </script>
 <body>
 <div class="page-container">
+<<<<<<< HEAD
 	<form action="" method="post" class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
+=======
+	<form action="" method="post" class="form form-horizontal" id="form-article-edit" enctype="multipart/form-data">
+		<input type="hidden" name="oldImg" value="{{film.img}}">
+>>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>影视名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -123,7 +144,11 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">评分：</label>
 			<div class="formControls col-xs-8 col-sm-9">
+<<<<<<< HEAD
 				<input type="number" name="score" id="" placeholder="" value="" class="input-text">
+=======
+				<input type="number" name="score" min="0" max="10" id="" placeholder="" value="{{film.score}}" class="input-text">
+>>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 			</div>
 		</div>
 		<div class="row cl">
@@ -192,6 +217,7 @@ $(function(){
 		increaseArea: '20%'
 	})
 
+<<<<<<< HEAD
 	$('#form-article-add').on('submit',function(ev){
 		ev.preventDefault()
 		var data = $(this).serialize()
@@ -202,6 +228,23 @@ $(function(){
 			console.log(text)
 		$.ajax({
 			url:'/admin/index/film-add',
+=======
+	$('#form-article-edit').on('submit',function(ev){
+		ev.preventDefault()
+		 var $checked = $("input[name='keywords']:checked")
+		 var check=[];
+		 for(var i=0;i<$checked.length;i++){
+		 	check.push($checked.eq(i).val())
+		 }
+		var data = decodeURIComponent($(this).serialize(),true)
+		var formData = new FormData($('form-article-edit')[0])
+		var file =$("input[id^='img']")[0].files;
+			formData.append('img',file[0])
+			formData.append('text',data)
+			formData.append('check',check)
+		$.ajax({
+			url:'/admin/index/film-edit',
+>>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 			data:formData,
 			contentType:false,
         	processData : false,  //传送DOM信息,所以设为false
