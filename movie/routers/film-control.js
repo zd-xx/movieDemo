@@ -43,10 +43,6 @@ module.exports = router
 //链接数据库
 mongoose.connect('mongodb://localhost/movie', { useNewUrlParser: true });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 router.get('/admin/index/dianying',function(req,res){
 	Film.findAll({},function(err,ret){
 		if(err){
@@ -71,10 +67,7 @@ router.get('/admin/index/film-add',function(req,res){
 
 router.post('/admin/index/film-add',upload.single('img'),function(req,res,next){
 	var text = req.body.text
-<<<<<<< HEAD
-=======
 	var check = req.body.check
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 	var myFilm = new Object()
 	var fileName = req.file.filename
 	var arr = text.split('&')
@@ -85,11 +78,7 @@ router.post('/admin/index/film-add',upload.single('img'),function(req,res,next){
 	if(fileName){
 		myFilm.img = '/public/img/films/'+fileName
 	}
-<<<<<<< HEAD
-	console.log(myFilm)
-=======
 	myFilm.keywords = check
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 	for(var i=0;i<50;i++){
 		Film.addFilm(myFilm,function(err,ret){
 		if(err){
@@ -106,10 +95,6 @@ router.post('/admin/index/film-add',upload.single('img'),function(req,res,next){
 		})
 	})
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 })
 
 router.get('/admin/index/film-edit',function(req,res){
@@ -121,11 +106,6 @@ router.get('/admin/index/film-edit',function(req,res){
 				message:'服务端错误'
 			})
 		}
-<<<<<<< HEAD
-		
-		console.log(data.keywords,typeof data.keywords)
-=======
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 		res.render('controler/film-edit.html',{
 			film:{
 				score:data.score,
@@ -133,11 +113,7 @@ router.get('/admin/index/film-edit',function(req,res){
 				form2:JSON.stringify(data.from2),
 				show_title:data.show_title,
 				_id:data._id,
-<<<<<<< HEAD
-				keywords:JSON.stringify(data.keywords),
-=======
 				keywords:data.keywords,
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 				film_name:data.film_name,
 				film_type:data.film_type,
 				region:data.region,
@@ -162,20 +138,12 @@ router.get('/admin/index/dianying',function(req,res){
 		res.render('controler/dianying-list.html',{
 			films:ret
 		})
-<<<<<<< HEAD
-	})	
-})
-router.post('/admin/index/film-del',function(req,res){
-	var id = req.body.id
-	console.log(id)
-=======
 	})
 		
 })
 
 router.post('/admin/index/film-del',function(req,res){
 	var id = req.body.id
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 	Film.delFilm(id,function(err,msg){
 		if(err){
 			res.status(500).json({
@@ -188,8 +156,6 @@ router.post('/admin/index/film-del',function(req,res){
 			message:'ok'
 		})
 	})
-<<<<<<< HEAD
-=======
 })
 
 router.post('/admin/index/film-edit',function(req,res,next){
@@ -231,5 +197,4 @@ router.post('/admin/index/film-edit',function(req,res,next){
 	// 	})
 	// })
 	// }
->>>>>>> c1a8dfb75d93c3610434cbf44a37ac3db765bd6c
 })
