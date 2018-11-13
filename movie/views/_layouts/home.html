@@ -10,10 +10,13 @@
   {{block 'head'}}{{/block}}
 
 </head>
-<body id="refreshContainer" class="mui-scroll-wrapper">
-  {{include '../_partials/header.html'}}
+<body>
+  <div id="refreshContainer" class="mui-scroll-wrapper">
+    {{include '../_partials/header.html'}}
   {{block 'body'}}{{/block}}
   {{include '../_partials/footer.html'}}
+  </div>
+  
   <div id="QRcode" class="hide">
     <div class="mask"></div>
     <p>
@@ -26,7 +29,25 @@
    <script src="/public/js/common.js"></script>
    <script>
     function al() {
-      $('#refreshContainer>ul').height(5000)
+      var _this=this
+      setTimeout(function(){
+         $('.main-vedio').append(`<li class="mui-table-view-cell mui-media">
+          <a href="/video">
+            <div class="video-img" style="width: 100px;height: 138px;display: inline-block;">
+              <img class="" src="/public/img/sl.jpg" style="width: 100%;height: 100%">
+            </div>
+            
+            <div class="mui-media-body" style="width: calc(95% - 100px);float: right;">
+              索隆
+              <p>评分:<span>9.0</span></p>
+              <p>地区:<span>9.0</span></p>
+              <p class='des'>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+            </div>
+          </a>
+        </li>`)
+         _this.endPullupToRefresh(false)
+      },1000)
+      
       console.log('1')
     }
    mui.init({
@@ -35,10 +56,10 @@
     up : {
       contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
       contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
-      callback :al //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+      callback :al, //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
     }
   }
-}); 
+});
    </script>
 </body>
 </html>
