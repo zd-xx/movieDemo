@@ -55,7 +55,7 @@
 						<td class="text-l">{{film.region}}</td>
 						<td><span class="price">{{film.score}}</span></td>
 						<td class="td-status"><span class="label label-success radius">{{film.film_type}}</span></td>
-						<td><a style="text-decoration:none" onClick="product_show('{{film.name}}','product-show.html','10001')" href="javascript:;"><img style="width: 50px;height: 100px" title="{{film.name}}" src="{{film.img}}"></a></td>
+						<td><a style="text-decoration:none" onClick="product_show('{{film.name}}','/admin/index/product-show','{{film._id}}')" href="javascript:;"><img style="width: 50px;height: 100px" title="{{film.name}}" src="{{film.img}}"></a></td>
 						<td>{{film.keywords}}</td>
 						<td>{{film.lastDate}}</td>
 						<td style="display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 2;-webkit-box-orient: vertical;white-space: normal;height: 150px">{{film.intro}}</td>

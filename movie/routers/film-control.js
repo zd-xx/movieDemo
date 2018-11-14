@@ -200,3 +200,9 @@ router.post('/admin/index/film-edit',function(req,res,next){
 	// })
 	// }
 })
+
+router.get('/admin/index/product-show',function(req,res){
+	console.log(req.query._id)
+	res.render('controler/product-show.html',{
+	})	
+})
